@@ -1,2 +1,2 @@
 # PHCUK HealthApp 
-Beta version of the PHCUK app: https://phcuk.org/.
+Beta version of the PHCUK Sugar Infographics app: https://phcuk.org/.
