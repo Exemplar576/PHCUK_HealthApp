@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:HealthApp.Views"
+             x:Class="HealthApp.MainPage">
+
+
+    <NavigationPage Title="About">
+        <x:Arguments >
+            <views:AboutPage/>
+        </x:Arguments>
+        <NavigationPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+                <On Platform="iOS" Value=""/>
+            </OnPlatform>
+        </NavigationPage.Icon>
+    </NavigationPage>
+
+    <NavigationPage Title="Sugar Impact">
+        <x:Arguments>
+            <views:SugarImpactPage/>
+        </x:Arguments>
+        <NavigationPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+                <On Platform="iOS" Value=""/>
+            </OnPlatform>
+        </NavigationPage.Icon>
+    </NavigationPage>
+
+    <NavigationPage Title="Calculator">
+        <x:Arguments>
+            <views:CalculatorPage/>
+        </x:Arguments>
+        <NavigationPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+                <On Platform="iOS" Value=""/>
+            </OnPlatform>
+        </NavigationPage.Icon>
+    </NavigationPage>
+
+</TabbedPage>
