@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Calculate Sugar Content"
+             x:Class="HealthApp.Views.CalculatorPage">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#baeef4"/>
+            <Setter Property="CornerRadius" Value="20"/>
+        </Style>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame>
+                <StackLayout>
+                    <Label Text="Glycaemic Index (g/serve)"/>
+                    <Entry x:Name="GI" Keyboard="Numeric" FontSize="12"/>
+                </StackLayout>
+            </Frame>
+            <Frame>
+                <StackLayout>
+                    <Label Text="Portion Size (g)"/>
+                    <Entry x:Name="SS" Keyboard="Numeric" FontSize="12"/>
+                </StackLayout>
+            </Frame>
+            <Frame>
+                <StackLayout>
+                    <Label Text="Carbohydrates (per 100g)"/>
+                    <Entry x:Name="Carbs" Keyboard="Numeric" FontSize="12"/>
+                </StackLayout>
+            </Frame>
+            <StackLayout VerticalOptions="StartAndExpand">
+                <Button Text="Calculate" Margin="40,20,40,0" Clicked="OnCalculate"/>
+                <Button Text="Clear" Margin="100,10,100,0" Clicked="OnClear"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

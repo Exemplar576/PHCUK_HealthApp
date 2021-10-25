@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:HealthApp.ViewModels"
+             xmlns:converters="clr-namespace:HealthApp.Backend"
+             Title="Sugar Infographics"
+             x:Class="HealthApp.Views.SugarImpactPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:SugarImpactViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="Parse"/>
+            <Style x:Key="MenuButton" TargetType="Button">
+                <Setter Property="CornerRadius" Value="30"/>
+                <Setter Property="BackgroundColor" Value="#baeef4"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Info" IconImageSource="question.png" Clicked="OnInfoClicked"/>
+        <ToolbarItem Text="A-Z" Order="Secondary" Clicked="OnSortClicked"/>
+        <ToolbarItem Text="Glycaemic Index" Order="Secondary" Clicked="OnSortClicked"/>
+        <ToolbarItem Text="Spoon Count" Order="Secondary" Clicked="OnSortClicked"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar Placeholder="Search" TextChanged="OnSearch"/>
+            <ScrollView HorizontalOptions="StartAndExpand" Orientation="Horizontal" HorizontalScrollBarVisibility="Never" MinimumHeightRequest="90">
+                <StackLayout Orientation="Horizontal">
+                    <Frame BorderColor="LightGray">
+                        <StackLayout Orientation="Horizontal">
+                            <Button Text="All" Style="{StaticResource MenuButton}" Clicked="OnMenuItemClicked"/>
+                            <Button Text="Breads" Style="{StaticResource MenuButton}" Clicked="OnMenuItemClicked"/>
+                            <Button Text="Breakfast Cereals" Style="{StaticResource MenuButton}" Clicked="OnMenuItemClicked"/>
+                            <Button Text="Fruits/Nuts" Style="{StaticResource MenuButton}" Clicked="OnMenuItemClicked"/>
+                            <Button Text="Vegetables" Style="{StaticResource MenuButton}" Clicked="OnMenuItemClicked"/>
+                            <Button Text="Drinks" Style="{StaticResource MenuButton}" Clicked="OnMenuItemClicked"/>
+                            <Button Text="Staples" Style="{StaticResource MenuButton}" Clicked="OnMenuItemClicked"/>
+                            <Button Text="Meat/Dairy" Style="{StaticResource MenuButton}" Clicked="OnMenuItemClicked"/>
+                            <Button Text="User Created" Style="{StaticResource MenuButton}" Clicked="OnMenuItemClicked"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+            <RefreshView IsEnabled="False" VerticalOptions="CenterAndExpand">
+                <ScrollView>
+                    <StackLayout x:Name="MainView" BindableLayout.ItemsSource="{Binding Tiles}">
+                        <BindableLayout.EmptyView>
+                            <Label Text="No items with these filters." VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                        </BindableLayout.EmptyView>
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <!-- Add convert to image source ", Converter={StaticResource Parse}" -->
+                                <Frame BorderColor="LightGray"
+                                       Padding="0"
+                                       HeightRequest="160" 
+                                       Margin="30,5,30,5"
+                                       CornerRadius="20"
+                                       ClassId="{Binding Name}">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnItemTapped" NumberOfTapsRequired="1"/>
+                                    </Frame.GestureRecognizers>
+                                    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Image Source="{Binding Image}" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill"/>
+                                        <StackLayout AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#80000000">
+                                            <Label Text="{Binding Name}" TextColor="White" FontSize="22" HorizontalTextAlignment="Center" Margin="0,30,0,0" />
+                                            <Label Text="{Binding ServeSize, StringFormat='Portion Size: {0}g'}" TextColor="White" HorizontalOptions="Center"/>
+                                            <Label Text="{Binding SpoonCount, StringFormat='Teaspoons of Sugar: {0:F1}'}" TextColor="White" HorizontalOptions="Center"/>
+                                        </StackLayout>
+                                    </AbsoluteLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
